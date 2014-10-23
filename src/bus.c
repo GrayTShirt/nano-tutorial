@@ -28,12 +28,12 @@ int node (const int argc, const char **argv)
 	assert(efd != -1);
 
 	event.data.fd = sock_fd;
-	// event.events = EPOLLIN | EPOLLET;
-	event.events = EPOLLIN; // nanomsg is level triggered.
+	event.events  = EPOLLIN;
 	assert(epoll_ctl(efd, EPOLL_CTL_ADD, sock_fd, &event) != -1);
 	// events = malloc(MAX_EVENTS * sizeof(event));
 
-	sleep(1); // wait for connections
+	// wait for connections
+	// sleep(1);
 	int to = 100;
 	assert(nn_setsockopt (sock, NN_SOL_SOCKET, NN_RCVTIMEO, &to, sizeof(to)) >= 0);
 

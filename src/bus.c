@@ -32,7 +32,7 @@ int node (const int argc, const char **argv)
 	// events = malloc(MAX_EVENTS * sizeof(event));
 
 	// wait for connections
-	// sleep(1);
+	sleep(1);
 	int to = 100;
 	assert(nn_setsockopt (sock, NN_SOL_SOCKET, NN_RCVTIMEO, &to, sizeof(to)) >= 0);
 

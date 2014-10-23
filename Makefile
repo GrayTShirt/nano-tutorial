@@ -1,10 +1,10 @@
 
 all: bus
+	$(MAKE) run
 
 bus:
 	rm -f bus
 	gcc -g -Wall src/bus.c -l nanomsg -o bus
-	$(MAKE) run
 
 run:
 	/bin/sh -c './bus node0 ipc:///tmp/node0.ipc ipc:///tmp/node1.ipc ipc:///tmp/node2.ipc & node0=$$!'

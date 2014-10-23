@@ -16,3 +16,6 @@ run:
 
 .PHONY: run
 .PHONY: bus
+
+clean:
+	git clean -xfd

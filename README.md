@@ -24,7 +24,8 @@ To do both:
 make
 ```
 
-Yep, it's that easy. Unless you, haven't installed nanomsg, or you're not using gcc *shudder*.
+Yep, it's that easy. Unless you, haven't installed nanomsg, or a Compiler, or make, or Linux...
+Yea nevermind.
 
 ##Referances
 

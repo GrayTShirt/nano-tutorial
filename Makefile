@@ -1,10 +1,19 @@
+ifndef CC
+	CC=gcc
+endif
+
+CFLAGS=-Wall -g
 
 all: bus
 	$(MAKE) run
 
-bus:
-	rm -f bus
-	gcc -g -Wall src/bus.c -l nanomsg -o bus
+bus: src/bus.c
+	rm -f $@
+	$(CC) $(CFLAGS) $< -l nanomsg -o $@
+
+%: src/%.c
+	rm -f $@
+	$(CC) $(CFLAGS) $< -l nanomsg -o $@
 
 run:
 	/bin/sh -c './bus node0 ipc:///tmp/node0.ipc ipc:///tmp/node1.ipc ipc:///tmp/node2.ipc & node0=$$!'
@@ -14,8 +23,7 @@ run:
 	sleep 5
 	kill -9 $$(ps aux | grep -v grep | grep node | awk '{print $$2}')
 
-.PHONY: run
-.PHONY: bus
+.PHONY: run bus time survey
 
 clean:
 	git clean -xfd

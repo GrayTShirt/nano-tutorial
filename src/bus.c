@@ -29,7 +29,6 @@ int node (const int argc, const char **argv)
 	event.data.fd = sock_fd;
 	event.events  = EPOLLIN;
 	assert(epoll_ctl(efd, EPOLL_CTL_ADD, sock_fd, &event) != -1);
-	// events = malloc(MAX_EVENTS * sizeof(event));
 
 	// wait for connections
 	sleep(1);
@@ -55,18 +54,6 @@ int node (const int argc, const char **argv)
 					printf ("%s: RECEIVED '%s' FROM BUS\n", argv[1], buf);
 					nn_freemsg (buf);
 				}
-				/*
-				event.events = EPOLLIN | EPOLLET;
-				event.data.fd = conn_sock;
-				if (epoll_ctl(efd, EPOLL_CTL_ADD, conn_sock,
-					&event) == -1) {
-
-					perror("epoll_ctl: conn_sock");
-					exit(EXIT_FAILURE);
-				} else {
-					do_use_fd(events[n].data.fd);
-				}
-				*/
 			}
 		}
 	}
